@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de RPG - Sistema Divino</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Partículas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Login do Mestre -->
+  <div id="login-screen" class="login-container">
+    <h2>Login do Mestre</h2>
+    <p>Digite a senha para acessar as fichas:</p>
+    <input type="password" id="master-password" placeholder="Senha" />
+    <button onclick="loginMaster()">Entrar</button>
+    <p id="login-error" style="color: #ff6b6b; display:none;">Senha incorreta!</p>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <div id="main-content" class="hidden">
+
+    <header>
+      <h1>📜 Fichas de RPG - Sistema Divino</h1>
+      <nav>
+        <button onclick="showTab('ficha')">Ficha</button>
+        <button onclick="showTab('poderes')">Poderes</button>
+        <button onclick="showTab('inventario')">Inventário</button>
+        <button onclick="showTab('todas-fichas')">Todas as Fichas</button>
+      </nav>
+    </header>
+
+    <!-- TAB FICHA -->
+    <div id="ficha" class="tab active container">
+      <h2>Informações Principais</h2>
+
+      <div class="grid-2">
+        <div>
+          <label>Nome</label>
+          <input type="text" id="nome" />
+        </div>
+        <div>
+          <label>Nacionalidade</label>
+          <input type="text" id="nacionalidade" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Pai Divino</label>
+          <input type="text" id="pai-divino" />
+        </div>
+        <div>
+          <label>Altura</label>
+          <input type="text" id="altura" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <label>Data de Aniversário</label>
+          <input type="date" id="aniversario" />
+        </div>
+        <div>
+          <label>Traumas</label>
+          <input type="text" id="traumas" />
+        </div>
+      </div>
+
+      <h2>Atributos</h2>
+      <div class="grid-3">
+        <div><label>Força</label><input type="number" id="forca"></div>
+        <div><label>Destreza</label><input type="number" id="destreza"></div>
+        <div><label>Vigor</label><input type="number" id="vigor"></div>
+        <div><label>Sabedoria</label><input type="number" id="sabedoria"></div>
+        <div><label>Carisma</label><input type="number" id="carisma"></div>
+        <div><label>Inteligência</label><input type="number" id="inteligencia"></div>
+        <div><label>Celestial</label><input type="number" id="celestial"></div>
+      </div>
+
+      <button class="action save" onclick="saveFicha()">Salvar</button>
+      <button class="action load" onclick="loadFicha()">Carregar</button>
+      <button class="action pdf" onclick="gerarPDF()">Salvar em PDF</button>
+      <button class="action send" onclick="enviarParaMestre()">Enviar ao Mestre</button>
+    </div>
+
+    <!-- TAB PODERES -->
+    <div id="poderes" class="tab container">
+      <h2>Poderes do Personagem</h2>
+      <textarea id="poderes-area" rows="12"></textarea>
+      <button class="action save" onclick="savePoderes()">Salvar Poderes</button>
+    </div>
+
+    <!-- TAB INVENTÁRIO -->
+    <div id="inventario" class="tab container">
+      <h2>Inventário</h2>
+      <label>Capacidade Máxima:</label>
+      <input type="number" id="capacidade" />
+
+      <label>Itens:</label>
+      <textarea id="itens" rows="10"></textarea>
+
+      <label>Anexar Imagem:</label>
+      <input type="file" id="img-item" accept="image/*" />
+
+      <button class="action save" onclick="saveInventario()">Salvar Inventário</button>
+    </div>
+
+    <!-- TAB LISTAGEM DE FICHAS -->
+    <div id="todas-fichas" class="tab container">
+      <h2>Fichas enviadas ao Mestre</h2>
+      <div id="lista-fichas"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
